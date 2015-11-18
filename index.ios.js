@@ -13,24 +13,26 @@ var {
   View,
 } = React;
 
+const TRIGGER_RACE = true;
+
 class BadAccess extends React.Component {
-
   componentWillMount() {
-    let interval = setInterval(() => this.setState(state => ({i: state.i+1})), 59);
-    this.setState({interval, i: 0});
-  }
+    let showLargeGif = large => this.setState({largeGif: large});
 
-  componentWillUnmount() {
-    clearInterval(this.state.interval);
+    setTimeout(() => {
+      showLargeGif(true)
+      setTimeout(() => showLargeGif(false), TRIGGER_RACE ? 10 : 1000);
+    }, 500);
+    this.setState({largeGif: false});
   }
 
   render() {
-    let {i} = this.state;
-    let gifUri = ((i % 5) + 1) + '.gif';
+    let {largeGif} = this.state;
+    let gifUri = (largeGif ? 'large_static' : '1') + '.gif';
 
     return (
       <View style={styles.container}>
-        <Image style={{flex: 1}} source={{uri: gifUri}} />
+          <Image style={{flex: 1}} source={{uri: gifUri}} />
       </View>
     );
   }
