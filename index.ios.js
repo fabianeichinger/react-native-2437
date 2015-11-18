@@ -26,8 +26,6 @@ class BadAccess extends React.Component {
 
   render() {
     let {i} = this.state;
-    let insetHeight = (i % 10) * 10;
-
     let gifUri = ((i % 5) + 1) + '.gif';
 
     return (
