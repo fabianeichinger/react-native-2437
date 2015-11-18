@@ -22,7 +22,7 @@ class BadAccess extends React.Component {
     setTimeout(() => {
       showLargeGif(true)
       setTimeout(() => showLargeGif(false), TRIGGER_RACE ? 10 : 1000);
-    }, 500);
+    }, 100);
     this.setState({largeGif: false});
   }
 
